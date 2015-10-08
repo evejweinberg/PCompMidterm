@@ -56,8 +56,9 @@ function keyPressed() {
   }
   if (keyCode == DOWN_ARROW) {
     saveCanvas('MyArt', 'jpg');
+    window.print();
     // redraw();
-    pause() = !pause();
+    pause() == !pause();
     // clear();
   }
   
