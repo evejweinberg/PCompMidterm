@@ -14,6 +14,10 @@ function LetterA(xPos, yPos) {
   stroke(palettebluepink[5]);
   line(letterwidth * .26, letterxheight, letterwidth * .66, letterxheight); //crossbar
   pop();
+  
+  this.update = function(){
+    
+  }
 }
 
 //-----B-------
@@ -31,6 +35,9 @@ function LetterB(xPos, yPos) {
   stroke(palettebluepink[4]);
   rect(0, letterxheight, letterwidth, letterxheight, 0, letterrounding, letterrounding, 0); //bottom round
   pop();
+  this.update = function(){
+    
+  }
 }
 //-----C---------
 function LetterC(xPos, yPos) { //define arguments and then use them inside the function to be updated in draw
@@ -53,6 +60,9 @@ function LetterC(xPos, yPos) { //define arguments and then use them inside the f
   angleMode(DEGREES);
   arc(letterwidth / 2, letterheight / 3, letterwidth / 1.7, letterwidth / 1.7, 180, 360); //G
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //---------D--------
@@ -66,6 +76,9 @@ function LetterD(xPos, yPos) {
   stroke(palettebluepink[5]);
   rect(0, 0, letterwidth, letterheight, 0, letterrounding, letterrounding, 0);
   pop();
+  this.update = function(){
+    
+  }
 }
 
 
@@ -90,6 +103,9 @@ function LetterE(xPos, yPos) {
   stroke(240, 90);
   line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----F-------
@@ -109,6 +125,9 @@ function LetterF(xPos, yPos) {
   stroke(palettebluepink[3]);
   line(0, letterxheight, letterwidth, letterxheight); //bottombar
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----G---------
@@ -130,6 +149,9 @@ function LetterG(xPos, yPos) {
   stroke(palettebluepink[4]);
   line(0,letterheight * .45, 0, letterheight * .55); //left straight line
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----H-------
@@ -151,6 +173,9 @@ function LetterH(xPos, yPos) {
   stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----I-------
@@ -173,6 +198,9 @@ function LetterI(xPos, yPos) {
   // stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----J-------
@@ -194,6 +222,9 @@ function LetterJ(xPos, yPos) {
   line(letterwidth, 0, letterwidth, letterxheight); //long
   stroke(palettebluepink[2]);
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----K-------
@@ -211,6 +242,9 @@ function LetterK(xPos, yPos) {
   stroke(palettebluepink[0]);
   line(letterwidth * .5, letterheight*.4, letterwidth, letterheight); //bottom
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----L-------
@@ -230,6 +264,9 @@ function LetterL(xPos, yPos) {
   stroke(240, 90);
   line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //------M-----
@@ -253,6 +290,9 @@ function LetterM(xPos, yPos) {
   // stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //------N-----
@@ -274,6 +314,9 @@ function LetterN(xPos, yPos) {
   stroke(240, 90);
   line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 
@@ -294,6 +337,9 @@ function LetterO(xPos, yPos) {
   angleMode(DEGREES);
   arc(letterwidth / 2, letterheight / 3, letterwidth / 1.7, letterwidth / 1.7, 180, 360); //O
   pop();
+  this.update = function(){
+    
+  }
 }
 
 
@@ -315,6 +361,9 @@ function LetterP(xPos, yPos) {
   // stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 
@@ -337,6 +386,9 @@ function LetterQ(xPos, yPos) {
   angleMode(DEGREES);
   arc(letterwidth / 2, letterheight / 3, letterwidth / 1.7, letterwidth / 1.7, 180, 360); //O
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----R-------
@@ -359,6 +411,9 @@ function LetterR(xPos, yPos) {
   // stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 
@@ -373,6 +428,9 @@ function LetterS(xPos, yPos) {
   stroke(palettebluepink[2]);
   bezier(letterwidth, 0, 0, 0, letterwidth, letterheight, 0, letterheight); //temporary
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----T-------
@@ -396,6 +454,9 @@ function LetterT(xPos, yPos) {
   // stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //------U-----------
@@ -417,6 +478,9 @@ function LetterU(xPos, yPos) {
   arc(letterwidth / 2, letterheight - letterheight / 2.5, letterwidth, letterheight * .8, 360, 180);
 
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //------V-----------
@@ -434,6 +498,9 @@ function LetterV(xPos, yPos) {
   line(letterwidth / 2, letterheight, letterwidth, 0);
 
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //------W-----
@@ -457,6 +524,9 @@ function LetterW(xPos, yPos) {
   // stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //------X-----
@@ -477,6 +547,9 @@ function LetterX(xPos, yPos) {
   stroke(240, 90);
   line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight); //N
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----Y---------
@@ -495,6 +568,9 @@ function LetterY(xPos, yPos) {
   stroke(palettebluepink[1]);
   line(letterwidth / 2, letterheight, letterwidth / 2,letterheight * .4); //left straight line
   pop();
+  this.update = function(){
+    
+  }
 }
 
 //-----Z-------
@@ -515,4 +591,7 @@ function LetterZ(xPos, yPos) {
 
 
   pop();
+  this.update = function(){
+    
+  }
 }

@@ -28,9 +28,8 @@ function setup() {
 }
 
 function draw() {
-  background(255);
-  LetterA(0, 0);
-  LetterB(0, 0);
+  // background(255);
+
   textAlign(CENTER);
   text(t, 500, 500);
   ellipse(x, 50, 10, 10);
@@ -42,8 +41,15 @@ function keyTyped() {
   t = t + key;
   temp = key;
   if (key === 'a') {
-    print('A')
     LetterA(200,200);
+    //say 'letterA = true' instead ?
+  }
+  if (key === 'b') {
+    LetterB(400,200);//add B to an array
+  }
+  
+   if (key === 'c') {
+   LetterC(600,200);//add B to an array
   }
 
 
@@ -67,7 +73,7 @@ function keyPressed() {
 
 function pause() {
   noLoop();
-  // loop();
+
 }
 
 function mousePressed() {
