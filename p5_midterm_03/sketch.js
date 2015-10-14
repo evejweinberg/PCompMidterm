@@ -1,4 +1,5 @@
 var offset = 0;
+var rovearound = 0;
 var linenumber = 0;
 var dots = [];
 var letterwidth = 160 / 1.5;
@@ -6,7 +7,7 @@ var letterheight = 240 / 1.5;
 var letterxheight = 130 / 1.5;
 var letterrounding = 80;
 var letterstroke = 5;
-var lettergap = 20 / 1.5;
+var lettergap = 20;
 var kerning = 260 / 1.5;
 var letterstrokeB;
 var palettebluepink;
@@ -53,17 +54,17 @@ function setup() {
 function draw() {
   background(slider.value());
   offset += 2;
-  var rovearound = 12 * sin(offset);
+  rovearound = 12 * sin(offset);
   gui.display();
   LRPush = sliderLR.value(); //change this to Serial input sensor
   ScaleSensor = sliderscaleUpSensor.value();
-  pushedheight = (height / 2) - (letterheight / 2);
+  pushedheight = (height / 2) - (letterheight/2);
   var centerthis = (width / 2) - ((letterwidth + lettergap) * (abc.length / 2));
 
 // for (var i=0;i<abc.length;i++){
   if (linenumber === 0) {
     push();
-    translate(centerthis, height / 2 + rovearound)
+    translate(centerthis, height / 2)
     drawAllLetters();
     pop();
   } else if (linenumber === 1) { //this does not work
@@ -71,9 +72,9 @@ function draw() {
     translate(centerthis, pushedheight+ rovearound);
     drawAllLetters();
     pop();
-  // }
+
 }
-//console.log(centerthis, height / 2 + rovearound)
+
 
 
 
@@ -231,7 +232,7 @@ function keyPressed() {
   if (keyCode == DOWN_ARROW) {
     saveCanvas('MyArt', 'jpg');
 
-    // pause() == !pause();
+    
 
   }
 
