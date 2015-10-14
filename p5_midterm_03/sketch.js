@@ -1,28 +1,26 @@
 var offset = 0;
+var needsInstructions = true;
 var rovearound = 0;
 var linenumber = 0;
 var dots = [];
-var letterwidth = 160 / 1.5;
-var letterheight = 240 / 1.5;
-var letterxheight = 130 / 1.5;
+var letterwidth = 80;
+var letterheight = 120;
+var letterxheight = 65;
 var letterrounding = 80;
 var letterstroke = 5;
 var lettergap = 20;
-var kerning = 260 / 1.5;
-var letterstrokeB;
-var palettebluepink;
-var nextLine = 0;
+var leading = 130;
+var letterstrokeB, palettebluepink, pushedheight;
 var abc = [];
 var abcLn2 = [];
-var pushedheight;
-var LRpush; //replace this in Draw with new parameters from serial
+var LRSensor; //replace this in Draw with new parameters from serial
 var ScaleSensor; //replace this in Draw with serial communication
 
 var currentLetterIndex = 0; //asign the new letter an index
 
 var scalewhole = 1;
-var slider, sliderLR, sliderThick, sliderscaleUpSensor, title;
-var gui;
+var slider, sliderLR, sliderThick, sliderscaleUpSensor, sliderKerning, title;
+var gui, title;
 var xposWholeArray;
 var scaleUpSensor;
 
@@ -52,16 +50,28 @@ function setup() {
 } /////////SETUP ENDS////////////SETUP ENDS/////////////
 
 function draw() {
-  background(slider.value());
+  background(0, slider.value());
+  gui.display();
+
+  questionbutton();
+  if (abc.length === 0) {
+    Instructions();
+    // print("no more instructions");
+  }
+
+
   offset += 2;
   rovearound = 12 * sin(offset);
-  gui.display();
-  LRPush = sliderLR.value(); //change this to Serial input sensor
+
+  LRSensor = sliderLR.value(); //change this to Serial input sensor
   ScaleSensor = sliderscaleUpSensor.value();
-  pushedheight = (height / 2) - (letterheight/2);
+
+  pushedheight = (height / 2) - (letterheight / 2);
   var centerthis = (width / 2) - ((letterwidth + lettergap) * (abc.length / 2));
 
-// for (var i=0;i<abc.length;i++){
+
+
+  //i should put this in the Class
   if (linenumber === 0) {
     push();
     translate(centerthis, height / 2)
@@ -69,11 +79,10 @@ function draw() {
     pop();
   } else if (linenumber === 1) { //this does not work
     push();
-    translate(centerthis, pushedheight+ rovearound);
+    translate(centerthis, pushedheight + rovearound);
     drawAllLetters();
     pop();
-
-}
+  }
 
 
 
@@ -87,28 +96,14 @@ function draw() {
 } /////////////DRAW ENDS ///////////////
 
 function keyTyped() {
-  // for (var i = 97; i < 122; i++) {
-  //   abc[i - 97]()
-  // }
-
 
   if (key === 'a' || key === 'A') {
-    // print(keyCode);
-    //abc[currentLetterIndex] = new LetterA();
-    // abc.push(new LetterA(linenumber));
     abc.push(new Letter("a", linenumber));
-
-    //say 'letterA = true' instead ?
   }
   if (key === 'b' || key === 'B') {
-    // print(keyCode);
-    // abc[currentLetterIndex] = new LetterB();
     abc.push(new Letter("b", linenumber));
   }
-
   if (key === 'c' || key === 'C') {
-    print(keyCode);
-    // abc[currentLetterIndex] = new LetterC();
     abc.push(new Letter("c", linenumber));
   }
   if (key === 'd' || key === 'D') {
@@ -217,7 +212,7 @@ function keyPressed() {
 
   if (keyCode === ENTER) {
     linenumber++;
-    // kerning = kerning++;
+    //new 'center this = centerthis + current abc.length*(letterwidth+lettergap), but only for line 1
   }
 
   if (keyCode == 8) { //DELETE, keycode 46 is not working, but Zero does
@@ -232,7 +227,7 @@ function keyPressed() {
   if (keyCode == DOWN_ARROW) {
     saveCanvas('MyArt', 'jpg');
 
-    
+
 
   }
 
@@ -247,35 +242,53 @@ function drawAllLetters() {
   for (var i = 0; i < abc.length; i++) { //check for the entire length of the array and display them
     abc[i].display();
   }
-
 }
 
 
 function Gui() {
-
-
-  title = createP("type something // \n\r press down arrow to print");
-  slider = createSlider(50, 190, 130);
+  slider = createSlider(20, 255, 20);
+  sliderKerning = createSlider(10, 100, 20);
   sliderLR = createSlider(-800, 800, 0);
   sliderThick = createSlider(0, 12, 5);
   sliderscaleUpSensor = createSlider(1, 10, 3);
-  title.addClass("title");
-  title.position(width / 2, 10);
-  slider.position(0, 0);
+  slider.position(0, 20);
+  sliderKerning.position(0, 150);
   sliderLR.position(0, 200);
   sliderThick.position(0, 100);
   sliderscaleUpSensor.position(0, 70);
 
   this.display = function() {
-    text("scale up FSR", 10, 65);
-    text("LeftRight", 10, 195);
-    text("Thickness", 10, 95);
-    letterstroke = sliderThick.value();
-    letterstrokeB = letterstroke - 3;
+      fill(255);
+      textSize(10);
+      text("less trails", 0, 10)
+      text("scale up FSR", 10, 65);
+      text("LeftRight", 10, 195);
+      text("Thickness", 10, 95);
+      text("Kerning", 10, 145);
+      letterstroke = sliderThick.value();
+      letterstrokeB = letterstroke - 3;
+    } //gui display ends
+} //gui ends
+
+function Instructions() {
+
+  needsInstructions = !needsInstructions;
+
+  fill(palettebluepink[0]);
+  textSize(35);
+  textAlign(CENTER);
+  text("INSTRUCTIONS:\n\nType Anything  \n\r \nPlay with the Sensors until you're happy \n with your design \n\r \nthen press down arrow to print", width / 2, height - 700);
+
+  // title = createP("type something // \n\r press down arrow to print");
+  // title.addClass("title");
+  // title.position(width / 2, 10);
+
+}
 
 
-
-  }
-
-
+function questionbutton() {
+  var bottomrightQ = createButton('?');
+  bottomrightQ.position(50, height - 50);
+  bottomrightQ.mousePressed(Instructions);
+  // bottomrightQ.addCLass();
 }
