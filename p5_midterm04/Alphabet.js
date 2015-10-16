@@ -6,7 +6,7 @@ function Letter(l, lineNum) {
   this.sideEdge = random(0, height);
   this.lineNum = lineNum;
   this.xoffset = 0; //offset from the start
-  this.xtrans = ((letterwidth + lettergap) * abc.length) + this.xoffset;
+  this.xtrans = ((letterwidth + lettergap) * abc[lineNum].length) + this.xoffset;
 
 
 
@@ -16,7 +16,7 @@ function Letter(l, lineNum) {
       this.xtransReverse = this.xtrans + LRSensor;
       this.yGettotop = -this.ytrans - (pushedheight + 100);
       this.scaleup = map(ScaleSensor, 1, 10, .5, 3);
-      this.ytrans = this.lineNum * leading + rovearound; //put it on the next line, this works
+      this.ytrans = this.lineNum * leading + rovearound+yExtraPush; //put it on the next line, this works
       //letterheight = map(ScaleSensor, .5, 3, 70, 200);
 
       if (this.letter == 'a') {
@@ -331,7 +331,7 @@ function Letter(l, lineNum) {
         arc(letterwidth / 2, letterheight / 3, letterwidth / 1.7, letterwidth / 1.7, 180, 360); //O
         stroke(palettebluepink[this.randomCol]);
         strokeWeight(letterstrokeB);
-        line(0, 0, this.topEdge - this.xtransReverse, this.yGettotop); //topleft
+        line(letterwidth / 2, 0, this.topEdge - this.xtransReverse, this.yGettotop);
 
         pop();
       } else if (this.letter == 'p') {
@@ -539,6 +539,9 @@ function Letter(l, lineNum) {
 
         pop();
       } //Z ends/////
+      else if (this.letter == 'space') {
+        //print("space is" +keyCode)
+      }
     } //display function ends
 } //object/class ends
 

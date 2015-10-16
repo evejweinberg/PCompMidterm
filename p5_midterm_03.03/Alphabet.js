@@ -6,7 +6,7 @@ function Letter(l, lineNum) {
   this.sideEdge = random(0, height);
   this.lineNum = lineNum;
   this.xoffset = 0; //offset from the start
-  this.xtrans = ((letterwidth + lettergap) * abc.length) + this.xoffset;
+  this.xtrans = ((letterwidth + lettergap) * abc[lineNum].length) + this.xoffset;
 
 
 

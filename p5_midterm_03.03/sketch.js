@@ -1,8 +1,9 @@
 var offset = 0;
 var help = false;
 var needsInstructions = true;
-var rovearound = 0;
 var linenumber = 0;
+var rovearound = 0;
+var abc = [];
 var dots = [];
 var letterwidth = 80;
 var letterheight = 120;
@@ -10,10 +11,11 @@ var letterxheight = 65;
 var letterrounding = 80;
 var letterstroke = 5;
 var lettergap = 20;
-var leading = 130;
-var letterstrokeB, palettebluepink, pushedheight, centerthis;
+var leading = 150;
+var letterstrokeB, palettebluepink, pushedheight;
+var centerthis = [];
 var nextlineoffset = 0;
-var abc = [];
+
 var abcLn2 = [];
 var LRSensor; //replace this in Draw with new parameters from serial
 var ScaleSensor; //replace this in Draw with serial communication
@@ -29,9 +31,11 @@ var scaleUpSensor;
 
 function setup() {
 
-  createCanvas(windowWidth, windowHeight);
+  var canvas = createCanvas(1280, 720);
+  canvas.position(200, 50);
 
-  xposWholeArray = windowWidth / 2;
+  abc[0] = [];
+  //xposWholeArray = windowWidth / 2;
   palettebluepink = [
     color(248, 73, 41), //red
     color(69, 97, 220), //blue
@@ -55,11 +59,12 @@ function setup() {
 function draw() {
   background(0, slider.value());
   gui.display();
+  
+
 
   // questionbutton();
   if (abc.length === 0) {
     Instructions();
-    // print("no more instructions");
   }
 
 
@@ -69,30 +74,33 @@ function draw() {
   LRSensor = sliderLR.value(); //change this to Serial input sensor
   ScaleSensor = sliderscaleUpSensor.value();
 
-  pushedheight = (height / 2) - (letterheight / 2);
-  centerthis = (width / 2) - ((letterwidth + lettergap) * (abc.length / 2));
- 
+  pushedheight = (letterheight / 2) * linenumber; //////////////add *linenumber
+
+
 
   //i should put this in the Class
-  for (var i=0; i<abc.length; i++){
-  if (abc[i].lineNum === 0) {
-    push();
-    translate(centerthis, height / 1.8)
-    drawAllLetters();
-    pop();
-  } 
-  if (abc[i].lineNum === 1) { //this does not work
-    push();
-    translate(centerthis-nextlineoffset, pushedheight + rovearound);
-    drawAllLetters();
-    pop();
-  } 
-  if (linenumber === 2) { //this does not work
-    push();
-    translate(centerthis, pushedheight + rovearound);
-    drawAllLetters();
-    pop();
-  }
+  for (var j = 0; j < abc.length; j++) {
+    centerthis[j] = (width / 2) - ((letterwidth + lettergap) * (abc[j].length / 2));
+    for (var i = 0; i < abc[j].length; i++) {
+      push();
+      translate(centerthis[j], height / 1.8 - pushedheight);
+      // drawAllLetters();
+      abc[j][i].display(); ///draw all letters here now
+      pop();
+
+    }
+    // if (abc[i].lineNum === 1) { //this does not work
+    //   push();
+    //   translate(centerthis-nextlineoffset, pushedheight + rovearound);
+    //   drawAllLetters();
+    //   pop();
+    // } 
+    // if (linenumber === 2) { //this does not work
+    //   push();
+    //   translate(centerthis, pushedheight + rovearound);
+    //   drawAllLetters();
+    //   pop();
+    // }
   }
 
 
@@ -112,106 +120,106 @@ function draw() {
 function keyTyped() {
 
   if (key === 'a' || key === 'A') {
-    abc.push(new Letter("a", linenumber));
+    abc[linenumber].push(new Letter("a", linenumber));
   }
   if (key === 'b' || key === 'B') {
-    abc.push(new Letter("b", linenumber));
+    abc[linenumber].push(new Letter("b", linenumber));
   }
   if (key === 'c' || key === 'C') {
-    abc.push(new Letter("c", linenumber));
+    abc[linenumber].push(new Letter("c", linenumber));
   }
   if (key === 'd' || key === 'D') {
     // abc[currentLetterIndex] = new LetterD();
-    abc.push(new Letter("d", linenumber));
+    abc[linenumber].push(new Letter("d", linenumber));
   }
   if (key === 'e' || key === 'E') {
     // abc[currentLetterIndex] = new LetterE();
-    abc.push(new Letter("e", linenumber));
+    abc[linenumber].push(new Letter("e", linenumber));
   }
   if (key === 'f' || key === 'F') {
     //abc[currentLetterIndex] = new LetterF();
-    abc.push(new Letter("f", linenumber));
+    abc[linenumber].push(new Letter("f", linenumber));
   }
   if (key === 'g' || key === 'G') {
     //abc[currentLetterIndex] = new LetterG();
-    abc.push(new Letter("g", linenumber));
+    abc[linenumber].push(new Letter("g", linenumber));
   }
   if (key === 'h' || key === 'H') {
     // abc[currentLetterIndex] = new LetterH();
-    abc.push(new Letter("h", linenumber));
+    abc[linenumber].push(new Letter("h", linenumber));
   }
   if (key === 'i' || key === 'I') {
     // abc[currentLetterIndex] = new LetterI();
-    abc.push(new Letter("i", linenumber));
+    abc[linenumber].push(new Letter("i", linenumber));
   }
   if (key === 'j' || key === 'J') {
     // abc[currentLetterIndex] = new LetterJ();
-    abc.push(new Letter("j", linenumber));
+    abc[linenumber].push(new Letter("j", linenumber));
   }
   if (key === 'k' || key === 'K') {
     // abc[currentLetterIndex] = new LetterK();
-    abc.push(new Letter("k", linenumber));
+    abc[linenumber].push(new Letter("k", linenumber));
   }
   if (key === 'l' || key === 'L') {
     // abc[currentLetterIndex] = new LetterL();
-    abc.push(new Letter("l", linenumber));
+    abc[linenumber].push(new Letter("l", linenumber));
   }
   if (key === 'm' || key === 'M') {
     // abc[currentLetterIndex] = new LetterM();
-    abc.push(new Letter("m", linenumber));
+    abc[linenumber].push(new Letter("m", linenumber));
   }
   if (key === 'n' || key === 'N') {
     // abc[currentLetterIndex] = new LetterN();
-    abc.push(new Letter("n", linenumber));
+    abc[linenumber].push(new Letter("n", linenumber));
   }
   if (key === 'o' || key === 'O') {
     // abc[currentLetterIndex] = new LetterO();
-    abc.push(new Letter("o", linenumber));
+    abc[linenumber].push(new Letter("o", linenumber));
   }
 
   if (key === 'p' || key === 'P') {
     // abc[currentLetterIndex] = new LetterP();
-    abc.push(new Letter("p", linenumber));
+    abc[linenumber].push(new Letter("p", linenumber));
   }
   if (key === 'q' || key === 'Q') {
     // abc[currentLetterIndex] = new LetterQ();
-    abc.push(new Letter("q", linenumber));
+    abc[linenumber].push(new Letter("q", linenumber));
   }
   if (key === 'r' || key === 'R') {
     // abc[currentLetterIndex] = new LetterR();
-    abc.push(new Letter("r", linenumber));
+    abc[linenumber].push(new Letter("r", linenumber));
   }
   if (key === 's' || key === 'S') {
     // abc[currentLetterIndex] = new LetterS();
-    abc.push(new Letter("s", linenumber));
+    abc[linenumber].push(new Letter("s", linenumber));
   }
   if (key === 't' || key === 'T') {
     // abc[currentLetterIndex] = new LetterT();
-    abc.push(new Letter("t", linenumber));
+    abc[linenumber].push(new Letter("t", linenumber));
   }
   if (key === 'u' || key === 'U') {
     // abc[currentLetterIndex] = new LetterU();
-    abc.push(new Letter("u", linenumber));
+    abc[linenumber].push(new Letter("u", linenumber));
   }
   if (key === 'v' || key === 'V') {
     // abc[currentLetterIndex] = new LetterV();
-    abc.push(new Letter("v", linenumber));
+    abc[linenumber].push(new Letter("v", linenumber));
   }
   if (key === 'w' || key === 'W') {
     // abc[currentLetterIndex] = new LetterW();
-    abc.push(new Letter("w", linenumber));
+    abc[linenumber].push(new Letter("w", linenumber));
   }
   if (key === 'x' || key === 'X') {
     //abc[currentLetterIndex] = new LetterX();
-    abc.push(new Letter("x", linenumber));
+    abc[linenumber].push(new Letter("x", linenumber));
   }
   if (key === 'y' || key === 'Y') {
 
-    abc.push(new Letter("y", linenumber));
+    abc[linenumber].push(new Letter("y", linenumber));
   }
   if (key === 'z' || key === 'Z') {
 
-    abc.push(new Letter("z", linenumber));
+    abc[linenumber].push(new Letter("z", linenumber));
   }
 
 
@@ -220,25 +228,29 @@ function keyTyped() {
 function keyPressed() {
   console.log(keyCode);
   if (keyCode === 16) { //why doesn't this work
-    abc[currentLetterIndex] = new LetterSpace();
+    abc[linenumber][currentLetterIndex] = new LetterSpace();
   }
 
   if (keyCode === ENTER) {
-    print(keyCode)
-
+    //print(keyCode)
     console.log("****ive changed center this to:" + centerthis);
-    nextlineoffset = nextlineoffset- (abc.length * (letterwidth + lettergap));
+    // nextlineoffset = nextlineoffset- (abc[linenumber].length * (letterwidth + lettergap));
     linenumber++;
+    abc[linenumber] = []; //initial array of line[linenumber]
 
   }
 
   if (keyCode == 8) { //DELETE
-    print('i am deleting the last one')
-    print(abc.length);
-    abc.splice(abc.length - 1, 1);
+    //print('i am deleting the last one')
+      // print(abc.length);
+    abc[linenumber].splice(-1, 1); //splice last one in the current line number
+    if (abc[linenumber].length <= 0) {
+      linenumber--;
+    }
   }
+
   if (keyCode == 38) {
-    print("Up");
+    //print("Up");
 
   }
   if (keyCode == DOWN_ARROW) { //change this to a sensor button
@@ -250,12 +262,13 @@ function pause() {
   noLoop();
 }
 
-function drawAllLetters() {
-  for (var i = 0; i < abc.length; i++) { //check for the entire length of the array and display them
-    abc[i].display();
-    
-  }
-}
+// function drawAllLetters() {
+//   for (var j = 0; j < abc.length; j++) {
+//     for (var i = 0; i < abc[j].length; i++) { //check for the entire length of the array and display them
+//       abc[j][i].display();
+//     }
+//   }
+// }
 
 
 function Gui() {
@@ -273,14 +286,17 @@ function Gui() {
   this.display = function() {
       fill(255);
       textSize(10);
-      text("less trails", 0, 10)
+      var guiA=createP("less trails");
+      guiA.position(0,10)
+      
+      //text("less trails", 0, 10)
       text("scale up FSR", 10, 65);
       text("LeftRight", 10, 195);
       text("Thickness", 10, 95);
       text("Kerning", 10, 145);
       letterstroke = sliderThick.value();
       letterstrokeB = letterstroke - 4;
-      if (letterstrokeB <0){
+      if (letterstrokeB < 0) {
         letterstrokeB = 0;
       }
       //lettergap = sliderKerning.value();
@@ -290,14 +306,15 @@ function Gui() {
 function Instructions() {
   fill(palettebluepink[0]);
   noStroke();
-  textSize(30);
+  textSize(25);
   textAlign(CENTER);
-  text("INSTRUCTIONS:\n\nType Anything  \n\r \nPlay with the Sensors until you're happy \n with your design \n\r \nthen press down arrow to print", width / 2, height - 700);
+  text("INSTRUCTIONS:\n\nType Anything  \n\r \nPlay with the Sensors until you're happy \n with your design \n\r \nthen press down arrow to print", 500, width - 700);
 
 }
 
 
 function createOneButton() {
+  textSize(16);
   var bottomrightQ = createButton('INSTRUCTIONS');
   bottomrightQ.position(10, height - 50);
   bottomrightQ.mousePressed(function() {
