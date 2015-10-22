@@ -312,11 +312,11 @@ function Instructions() {
   // rectMode(CENTER);
   fill(0, 200);
   rect(0, 0, width * 2, height * 2)
-  fill(palettebluepink[0]);
+  fill(palettebluepink[3]);
   noStroke();
   textSize(25);
   textAlign(CENTER);
-  text("INSTRUCTIONS:\n\nType Anything...NOW!  \n\r \nPlay with sliders until you're happy \n with your design \n\r \nPress SAVE\n\r \nYou can use ENTER and BACKSPACE like real keys\n\r \nNOW PLAY!", 600, 190);
+  text("INSTRUCTIONS:\n\n\nType Anything...NOW!  \n\r \nPlay with sliders until you're happy \n with your design \n\r \nPress SAVE\n\r \nPress ENTER for multiple lines \n\r \nNOW PLAY!", width/2, 190);
 
 
 }
@@ -329,6 +329,15 @@ function createOneButton() {
   bottomrightP.mousePressed(function() {
     saveCanvas('MyArt', 'jpg');
   });
+  
+  var bottomrightR = createButton('RELOAD');
+  bottomrightR.position(10, 700);
+  bottomrightR.addClass("instructions")
+  bottomrightR.mousePressed(function() {
+    window.location.href=window.location.href
+  });
+
+
 
   var bottomrightQ = createButton('INSTRUCTIONS');
   bottomrightQ.position(10, 650);
